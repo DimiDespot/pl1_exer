@@ -16,7 +16,8 @@ void print_random () {
 
 int main () {
   srand (time(NULL));
-  int N = 1000, M = 1000;
+  int N = 100, M = 1000;
+  printf("%d %d\n", N, M);
   for (int i = 0; i < N; i++) {
     for (int j = 0; j < M; j++) {
       print_random ();

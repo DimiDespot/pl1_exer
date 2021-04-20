@@ -11,7 +11,7 @@ int main (int arg, char* argv[]) {
   int N, M;
   fl >> M >> N;
 
-  int temp; //arr[M] 
+  int temp; //arr[M]cd 
 
   for (int i = 0; i < M; i++) {
     fl >> temp;

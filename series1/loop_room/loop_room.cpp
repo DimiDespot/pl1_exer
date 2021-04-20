@@ -16,7 +16,7 @@ int nextRoom (char dir, int row, int col, int N, int M) {
   }
 }
 
-bool dfs (vector<int> maze, vector<bool> &visited, vector<bool> &canExit, int i) {
+bool dfs (vector<int> &maze, vector<bool> &visited, vector<bool> &canExit, int i) {
   if (visited[i]) return canExit[i];
 
   visited[i] = true;
@@ -26,7 +26,7 @@ bool dfs (vector<int> maze, vector<bool> &visited, vector<bool> &canExit, int i)
   return canExit[i];
 }
 
-int solve (vector<int> maze, int N, int M) {
+int solve (vector<int> &maze, int N, int M) {
   vector<bool> visited (N*M), canExit (N*M);
   for (int i = 0; i < N*M; i++) {
     visited[i] = false;

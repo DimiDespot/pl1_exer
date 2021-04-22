@@ -11,6 +11,7 @@ let
     in
       extractChars ((i-1), (rev chars @ acc), t)
     end
+    | extractChars (_, _, _) = nil
 in
   (N, M, extractChars (N, [], rest))
 end
@@ -25,6 +26,7 @@ let
       | #"D" => if i >= ((N-1)*M) then loop (i+1) ((~1)::acc) t else loop (i+1) ((i+M)::acc) t
       | #"L" => if i mod M = 0 then loop (i+1) ((~1)::acc) t else loop (i+1) ((i-1)::acc) t
       | #"R" => if i mod M = M-1 then loop (i+1) ((~1)::acc) t else loop (i+1) ((i+1)::acc) t
+      | _ => nil
 in
   loop 0 [] maze
 end

@@ -1,6 +1,8 @@
 import numpy as np
 import sys
 
+sys.setrecursionlimit(15000)
+
 def nextRoom(dir, row, col, N, M):
     if ((row == 0 and dir == 'U') or (row == N-1 and dir == 'D') or (col == 0 and dir == 'L') or (col == M-1 and dir == 'R')):
         return -1
@@ -13,6 +15,9 @@ def dfs (i):
     global visited
     global canExit
     if visited[i]:
+        #print ("i: ", i)
+        #print ("visited: ", visited)
+        #print ("canExit: ", canExit)
         return canExit[i]
     visited[i] = True
     if maze[i] == -1:
@@ -27,8 +32,10 @@ def solve(N, M):
     global canExit
     for i in range (N*M):
         if not visited[i]:
+            #print ("i: ", i)
+            #print ("visited: ", visited)
+            #print ("canExit: ", canExit)
             canExit[i] = dfs (i)
-
     count = 0
     for i in range (N*M):
         if not canExit[i]:
@@ -38,12 +45,21 @@ def solve(N, M):
 
 filename = sys.argv[1]
 with open(filename) as f:
-    N = int(f.read(1))
-    junk = f.read(1)
-    M = int(f.read(1))
-    junk = f.read(1)
+    N = f.read(1)
+    temp = f.read(1)
+    while temp != ' ':
+        N += temp
+        temp = f.read(1)
+    M = f.read(1)
+    temp = f.read(1)
+    while temp != '\n':
+        M += temp
+        temp = f.read(1)
+    N = int(N)
+    M = int(M)
     maze = [0]*(N*M)
-    visited = canExit = [False]*(N*M)
+    visited = [False]*(N*M)
+    canExit = [False]*(N*M)
     for i in range (N):
         for j in range (M):
             temp = f.read(1)
